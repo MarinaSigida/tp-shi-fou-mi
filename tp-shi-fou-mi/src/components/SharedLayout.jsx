@@ -7,13 +7,13 @@ const SharedLayout = () => {
     <div className="container">
       <nav>
         <NavLink to="/" end className="navLink">
-          Home
+          Accueil
         </NavLink>
         <NavLink to="/game" className="navLink">
-          Game
+          Jeu
         </NavLink>
         <NavLink to="/results" className="navLink">
-          Results
+          Résultats
         </NavLink>
       </nav>
       <div className="content">

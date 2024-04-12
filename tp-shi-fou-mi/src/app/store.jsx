@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import gameReducer from '../features/game/gameSlice';
-import { userSlice } from '../features/userSlice'
+import { userSlice } from '../features/user/userSlice'
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     game: gameReducer,
     u: userSlice.reducer,
@@ -11,3 +11,4 @@ export default configureStore({
 });
 
 export const { selectUser } = userSlice.actions
+export default store

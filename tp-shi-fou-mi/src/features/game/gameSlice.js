@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import Game from '../../pages/Game.jsx';
 
 const initialState = {
   playerChoice: null,
@@ -6,7 +7,6 @@ const initialState = {
   result: null,
   roundsPlayed: 0,
   playerScore: 0,
-  computerScore: 0,
 };
 
 const gameSlice = createSlice({
@@ -22,20 +22,25 @@ const gameSlice = createSlice({
     setResult(state, action) {
       state.result = action.payload;
     },
-    roundsPlayed(state) {
+    incrementRoundsPlayed(state) {
       state.roundsPlayed++;
     },
     scoreUpdate(state) {
-      if (state.result === 'playerWin') { 
-        state.playerScore++;
-      } else if (state.result === 'computerWin') { 
-        state.computerScore++;
-      }
-    },
+        if (state.result === 'playerWin') { 
+          state.playerScore++;
+        } else if (state.result === 'computerWin') { 
+          if (state.playerScore === 0) {
+          } else {
+            state.playerScore--;
+          }
+        }
+      },
     resetGame(state) {
-      state.playerChoice = null;
-      state.computerChoice = null;
-      state.result = null;
+        state.playerChoice = null;
+        state.computerChoice = null;
+        state.result = null;
+        state.roundsPlayed = 0;
+        state.playerScore = 0;
     },
   },
 });
@@ -44,7 +49,7 @@ export const {
   setPlayerChoice,
   setComputerChoice,
   setResult,
-  roundsPlayed,
+  incrementRoundsPlayed,
   scoreUpdate,
   resetGame,
 } = gameSlice.actions;

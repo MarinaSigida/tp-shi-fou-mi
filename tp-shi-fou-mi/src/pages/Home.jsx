@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addUser } from '../features/user/userSlice';
 import './Home.css';
 
 const Home = () => {
-  const [name, setName] = useState('');
+  const [ name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [score, setScore] = useState(0);
 
-  // const dispatch = useDispatch();
+const dispatch = useDispatch();
+const navigate = useNavigate(); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    //dispatch(registerUser({ name, email }));
-    // Optionally, you can redirect the user to the Game page after registration
-    // history.push('/game');
+    dispatch(addUser({ name, email, score }));
+    setName('');
+    setEmail('');
+    setScore(0);
+   navigate('/game')
   };
-
+ 
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -24,7 +29,7 @@ const Home = () => {
           ci-dessous pour commencer à jouer.
         </h2>
         <div>
-          <label>Name:</label>
+          <label>Votre nom et prénom:</label>
           <input
             type="text"
             value={name}
@@ -40,13 +45,13 @@ const Home = () => {
           />
         </div>
         <div className="btn-container">
-          <button type="submit">Start the game</button>
+          <button type="submit">Commencer le jeu</button>
         </div>
       </form>
-      <h2>Game Rules:</h2>
+      <h2>Regles du jeu:</h2>
       <h3>
-        Le rocher 👊 gagne contre les ciseaux ✌️ ; le papier 🤚 gagne contre le
-        rocher 👊; et les ciseaux ✌️ gagnent contre le papier 🤚. Si les deux
+        La pierre 👊 gagne contre les ciseaux ✌️ ; le papier 🤚 gagne contre la
+        pierre 👊; et les ciseaux ✌️ gagnent contre le papier 🤚. Si les deux
         joueurs lancent la même main signal, il y a égalité et le jeu reprend
         jusqu'à ce qu'il y ait un gagnant.
       </h3>

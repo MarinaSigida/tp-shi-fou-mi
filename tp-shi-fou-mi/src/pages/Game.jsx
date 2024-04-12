@@ -4,10 +4,11 @@ import {
   setPlayerChoice,
   setComputerChoice,
   setResult,
-  roundsPlayed,
+  incrementRoundsPlayed,
   scoreUpdate,
   resetGame,
 } from '../features/game/gameSlice';
+import './Game.css';
 
 
 const Game = () => {
@@ -15,7 +16,7 @@ const Game = () => {
   const [playerChoice, setPlayerChoice] = useState(null);
   const { computerChoice, result, roundsPlayed, playerScore, computerScore } = useSelector(state => state.game);
 
-  const choices = ['pierre', 'papier', 'ciseaux'];
+  const choices = ['pierre 👊', 'papier 🤚', 'ciseaux ✌️'];
 
   const playRound = () => {
     const computerChoice = choices[Math.floor(Math.random() * 3)]; // 3 = choices.length
@@ -25,16 +26,16 @@ const Game = () => {
     if (playerChoice === computerChoice) {
       roundResult = 'égalité'
     } else if (
-      (playerChoice === 'pierre' && computerChoice === 'ciseaux') ||
-      (playerChoice === 'papier' && computerChoice === 'pierre') ||
-      (playerChoice === 'ciseaux' && computerChoice === 'papier')
+      (playerChoice === 'pierre 👊' && computerChoice === 'ciseaux ✌️') ||
+      (playerChoice === 'papier 🤚' && computerChoice === 'pierre 👊') ||
+      (playerChoice === 'ciseaux ✌️' && computerChoice === 'papier 🤚')
     ) {
       roundResult = 'playerWin';
     } else {
       roundResult = 'computerWin';
     }
     dispatch(setResult(roundResult));
-    dispatch(roundsPlayed());
+    dispatch(incrementRoundsPlayed());
     dispatch(scoreUpdate());
   }
 
@@ -44,17 +45,19 @@ const Game = () => {
   };
 
   return (
-    <div>
+    <div style={{ width: '1000px', margin: '20px auto'}}>
       <h2> Choisis ton signe:</h2>
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
         {choices.map(choice => (
           <button key={choice} onClick={() => setPlayerChoice(choice)}>{choice}</button>
         ))}
       </div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '30px'}}>
       <button onClick={playRound}>Jouer la partie</button>
       <button onClick={handleResetGame}>Réinitialiser le jeu</button>
+      </div>
       {playerChoice && (
-        <div>
+        <div style={{ display: 'flex', flexDirection:'column', justifyContent: 'center', alignItems: 'center', marginTop: '30px'}}>
           <p>Ton choix: {playerChoice}</p>
           <p>Choix de l'ordinateur: {computerChoice}</p>
           <p>Résultat: {result}</p>
