@@ -15,6 +15,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="game" element={<Game />} />
           <Route path="results" element={<Results />} />
+          <Route path="user/:user.name" element={ <User />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
