@@ -16,9 +16,11 @@ const SharedLayout = () => {
           Results
         </NavLink>
       </nav>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Outlet />
-      </Suspense>
+      <div className="content">
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
+      </div>
     </div>
   );
 };
