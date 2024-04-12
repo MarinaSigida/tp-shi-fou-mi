@@ -1,14 +1,17 @@
 const Home = () => {
   return (
-    <main>
-      <h1>Accueil</h1>
-
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-        laboriosam placeat incidunt rem illum animi nemo quibusdam quia
-        voluptatum voluptate.
-      </p>
-    </main>
+    <form onSubmit={handleSubmit}>
+       <label>
+              Name:
+              <input type="text" name="name" />
+            </label>
+            <br></br>
+            <label>
+              Email:
+              <input type="email" name="email" />
+            </label>
+            <button type="submit">Submit</button>
+    </form>
   );
 };
 
