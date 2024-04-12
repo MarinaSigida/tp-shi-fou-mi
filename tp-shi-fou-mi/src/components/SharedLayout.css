@@ -1,0 +1,28 @@
+.container {
+  width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  border-bottom: 1px solid white;
+}
+
+.navLink {
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+
+.navLink:active {
+  color: white;
+  background-color: orangered;
+}
